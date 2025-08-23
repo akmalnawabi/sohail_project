@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-10 mt-10">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Logo & Description */}
+        {/* Logo not available yet & Description */}
         <div className="flex flex-col items-start gap-4">
           {/* <img
             src=""
