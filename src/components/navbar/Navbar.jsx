@@ -27,23 +27,23 @@ const Menu = [
   },
 ];
 
-// const DropdownLinks = [
-//   {
-//     id: 1,
-//     name: "Trending Products",
-//     link: "/#",
-//   },
-//   {
-//     id: 2,
-//     name: "Best Selling",
-//     link: "/#",
-//   },
-//   {
-//     id: 3,
-//     name: "Top Rated",
-//     link: "/#",
-//   },
-// ];
+const DropdownLinks = [
+  {
+    id: 1,
+    name: "Trending Products",
+    link: "/#",
+  },
+  {
+    id: 2,
+    name: "Best Selling",
+    link: "/#",
+  },
+  {
+    id: 3,
+    name: "Top Rated",
+    link: "/#",
+  },
+];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,10 +60,10 @@ const Navbar = () => {
       {/* upper navbar  */}
       <div className="bg-orange-400/40 py-1">
         <div className="container flex justify-between items-center px-4">
-          <div>
-            <Link to="/" className="font-bold text-xl sm:text-2xl flex">
+          <div className="py-2">
+            <Link to="/" className="font-bold text-xl sm:text-xl text-shadow-black">
               {/* {Logo && <img src={Logo} alt="logo" className="w-10" />} */}
-              NOORI STORE
+              AFGHAN CULTURE PRODUCTS
             </Link>
           </div>
 

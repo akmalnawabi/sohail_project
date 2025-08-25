@@ -1,5 +1,6 @@
 import React from "react";
-import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaWhatsapp, FaPhone } from "react-icons/fa";
+import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 const footerLinks = [
@@ -30,8 +31,10 @@ const Footer = () => {
             alt="Logo"
             className="w-16 h-16 bg-gray-700 rounded-full object-cover"
           /> */}
-          <Link to="/" className="text-gray-200 text-lg font-bold">Noori Carpet Store</Link>
-          <p className="text-sm">World Of Carpet</p>
+          <Link to="/" className="text-white text-lg font-semibold">
+            Afghan Culture Products
+          </Link>
+          <p className="text-sm">Carpet, Dry fruits, Jewelry</p>
         </div>
         {/* Important Links */}
         <div>
@@ -78,19 +81,30 @@ const Footer = () => {
               <FaWhatsapp className="text-2xl hover:text-amber-400 transition-colors duration-200" />
             </Link>
           </div>
+          <div>
+            <p className="flex gap-2 items-center mt-3"><span><FaPhone/></span>+49 1575 6614768</p>
+            <p className="flex gap-2 items-center"><span><FaPhone/></span>+1 6313 669203</p>
+          </div>
         </div>
         {/* Address */}
         <div>
           <h1 className="text-lg font-semibold mb-4">Address</h1>
-          <p className="text-gray-300 text-sm">
-            New city, Kabul second street
-            <br />
-            Kabul, Afghanistan
+          <p className="text-gray-300 text-sm flex items-center gap-2">
+            <span className="text-orange-400">
+              <CiLocationOn className="text-xl" />
+            </span>
+            Von-Schwind-Straße 25 45768 Marl Deutschland, GER
+          </p>
+          <p className="text-gray-300 text-sm flex items-center gap-2">
+            <span className="text-orange-400">
+              <CiLocationOn className="text-xl" />
+            </span>
+            Hauppauge NY 11788, USA
           </p>
         </div>
       </div>
       <div className="mt-10 border-t border-gray-700 pt-4 text-center text-gray-400 text-xs">
-        &copy; {new Date().getFullYear()} Akmal Nawabi. All rights reserved.
+        &reg; {new Date().getFullYear()} Akmal Nawabi. All rights reserved.
       </div>
     </footer>
   );

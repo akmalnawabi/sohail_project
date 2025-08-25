@@ -1,7 +1,7 @@
 import React from "react";
 import img1 from "../../assets/manShop.png";
 import img2 from "../../assets/red.png";
-import img3 from "../../assets/prd1.jpg";
+import img3 from "../../assets/productsImg.png";
 import Slider from "react-slick";
 
 const ImageList = [
@@ -9,7 +9,7 @@ const ImageList = [
     id: 1,
     img: img1,
     title: "Welcome",
-    description: "To Noori Carpet Store",
+    description: "To Afghan Culture main Products",
   },
   {
     id: 2,

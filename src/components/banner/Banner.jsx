@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImg from "../../assets/sohail.jpeg";
+import bannerImg from "../../assets/edris.png";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa6";
 import { IoCallOutline } from "react-icons/io5";
@@ -17,9 +17,9 @@ const Banner = () => {
             <div className="w-full max-w-[250px] sm:max-w-[250px] md:max-w-[250px] mx-auto">
               <img
                 src={bannerImg}
-                alt="Ahmad Sohail Noori"
+                alt="Edris Qasemyar"
                 loading="lazy"
-                className="h-[120px] sm:h-[300px] md:h-[300px] w-full object-cover rounded-lg shadow-2xl"
+                className="h-[100px] sm:h-[250px] md:h-[300px] w-full object-cover rounded-lg shadow-2xl"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "block";
@@ -33,25 +33,25 @@ const Banner = () => {
               About Us
             </h1>
             <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
-              Ahmad Sohail Noori
+              Mohammad Edris Qasemyar
             </h1>
             <p className="text-sm sm:text-md text-gray-500 tracking-wide leading-relaxed">
-              Leader of Noori Group With 10+ Years of Experience
+              Leader of Afghan Culture Products With 10+ Years of Experience
             </p>
             <div className="flex flex-col gap-3 md:gap-2">
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <MdOutlineEmail className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-amber-100 flex-shrink-0" />
                 <p className="text-sm sm:text-base break-all">
-                  sohailnoori@gmail.com
+                  idrisqasemyar411@hotmail.com
                 </p>
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <FaInstagram className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-red-100 flex-shrink-0" />
-                <p className="text-sm sm:text-base">Sohail Mubarez</p>
+                <p className="text-sm sm:text-base">Mohammad Edris Qasemyar</p>
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <IoCallOutline className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-green-100 flex-shrink-0" />
-                <p className="text-sm sm:text-base">+93 773830719</p>
+                <p className="text-sm sm:text-base">+49 1575 6614768</p>
               </div>
             </div>
           </div>
