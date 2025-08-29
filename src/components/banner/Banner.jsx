@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImg from "../../assets/edris.png";
+import bannerImg from "../../assets/aboutPic.png";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa6";
 import { IoCallOutline } from "react-icons/io5";
@@ -19,7 +19,7 @@ const Banner = () => {
                 src={bannerImg}
                 alt="Edris Qasemyar"
                 loading="lazy"
-                className="h-[100px] sm:h-[250px] md:h-[300px] w-full object-cover rounded-lg shadow-2xl"
+                className="h-[150px] sm:h-[250px] md:h-[300px] w-full object-cover rounded-lg shadow-2xl"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "block";
@@ -33,7 +33,7 @@ const Banner = () => {
               About Us
             </h1>
             <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
-              Mohammad Edris Qasemyar
+              Edris Qasemyar
             </h1>
             <p className="text-sm sm:text-md text-gray-500 tracking-wide leading-relaxed">
               Leader of Afghan Culture Products With 10+ Years of Experience
@@ -42,12 +42,12 @@ const Banner = () => {
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <MdOutlineEmail className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-amber-100 flex-shrink-0" />
                 <p className="text-sm sm:text-base break-all">
-                  idrisqasemyar411@hotmail.com
+                  Edris411@outlook.com
                 </p>
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <FaInstagram className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-red-100 flex-shrink-0" />
-                <p className="text-sm sm:text-base">Mohammad Edris Qasemyar</p>
+                <p className="text-sm sm:text-base">Edris Qasemyar</p>
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <IoCallOutline className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-green-100 flex-shrink-0" />

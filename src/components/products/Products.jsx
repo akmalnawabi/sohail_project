@@ -1,30 +1,29 @@
 import React from "react";
-import img1 from "../../assets/prd1.jpg";
-import img2 from "../../assets/prd2.jpg";
-import img3 from "../../assets/prd3.jpg";
-
-import { FaStar } from "react-icons/fa";
+import img1 from "../../assets/carpets.png";
+import img2 from "../../assets/dryFruits.png";
+import img3 from "../../assets/ring.png";
+import { IoIosPricetag } from "react-icons/io";
 
 const ProductsData = [
   {
     id: 1,
     img: img1,
     title: "Afghanistan",
-    rating: 5.0,
+    rating: "500-1000" ,
     color: "Red",
   },
   {
     id: 2,
     img: img2,
     title: "Iran",
-    rating: 4.4,
+    rating: "50-200",
     color: "Gray & Brown",
   },
   {
     id: 3,
     img: img3,
     title: "Garmany",
-    rating: 5,
+    rating: "500-2000",
     color: "Brown",
   },
 ];
@@ -67,7 +66,7 @@ const Products = () => {
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div className="text-center space-y-2">
                   <div className="flex justify-center items-center gap-1">
-                    <FaStar className="text-yellow-400" />
+                    <IoIosPricetag className="" />
                     <span className="text-sm">{data.rating}</span>
                   </div>
                   <h2 className="text-lg font-bold">{data.title}</h2>
