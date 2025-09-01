@@ -144,7 +144,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div>
@@ -169,7 +169,7 @@ const Dashboard = () => {
         <div className="mb-6">
           <button
             onClick={() => setShowAddForm(true)}
-            className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors"
+            className="flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition-colors"
           >
             <IoAdd />
             Add New Product
@@ -264,7 +264,7 @@ const Dashboard = () => {
               <div className="md:col-span-2 flex gap-3">
                 <button
                   type="submit"
-                  className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition-colors"
+                  className="bg-amber-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors"
                 >
                   {editingProduct ? "Update Product" : "Add Product"}
                 </button>
