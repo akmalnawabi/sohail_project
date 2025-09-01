@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
 import { IoMdSearch } from "react-icons/io";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
