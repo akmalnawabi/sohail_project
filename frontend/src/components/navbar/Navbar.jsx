@@ -44,24 +44,6 @@ const getMenuItems = (isAdmin) => {
   return baseMenu;
 };
 
-// const DropdownLinks = [
-//   {
-//     id: 1,
-//     name: "Trending Products",
-//     link: "/#",
-//   },
-//   {
-//     id: 2,
-//     name: "Best Selling",
-//     link: "/#",
-//   },
-//   {
-//     id: 3,
-//     name: "Top Rated",
-//     link: "/#",
-//   },
-// ];
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -77,7 +59,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <>
       <div
         className="shadow-md bg-white dark-text-white
     duration-200 relative z-40"
@@ -91,7 +73,7 @@ const Navbar = () => {
                 className="flex items-center gap-2 font-semibold text-xl sm:text-xl text-shadow-black"
               >
                 {Logo && <img src={Logo} alt="logo" className="w-10" />}
-                Afghan Culture Products
+                AFGHAN CULTURE PRODUCTS
               </Link>
             </div>
 
@@ -129,7 +111,7 @@ const Navbar = () => {
                     {isAdmin() && (
                       <Link
                         to="/dashboard"
-                        className="bg-orange-500 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm"
+                        className="bg-amber-500 text-white px-3 py-1 rounded-md hover:bg-amber-600 transition-colors text-sm"
                       >
                         Dashboard
                       </Link>
@@ -206,13 +188,15 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
       <div>
+        {/* Login Modal */}
         <LoginModal
           isOpen={showLoginModal}
           onClose={() => setShowLoginModal(false)}
         />
       </div>
-    </div>
+    </>
   );
 };
 
