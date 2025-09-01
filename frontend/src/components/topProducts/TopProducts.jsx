@@ -1,27 +1,27 @@
 import React from "react";
 import img1 from "../../assets/services1.jpg";
-import img2 from "../../assets/services2.jpg";
-import img3 from "../../assets/services3.jpg";
+import img2 from "../../assets/aboutPic.png";
+import img3 from "../../assets/service3.png";
 import { FaStar } from "react-icons/fa";
 
 const ProductsData = [
   {
     id: 1,
     img: img1,
-    title: "Product 1",
-    description: "This Carpet is made of 100% Afghan Wool",
+    title: "Afghani Carpet",
+    description: "This Carpet is Handmade of Afghanistan",
   },
   {
     id: 2,
     img: img2,
-    title: "Product 2",
-    description: "This Carpet is made of 100% Iranian Wool",
+    title: "Afghani Almond",
+    description: "This Almond is Afghani Top Almond",
   },
   {
     id: 3,
     img: img3,
-    title: "Product 3",
-    description: "This Carpet is made of 100% German Wool",
+    title: "Iranian Carpet",
+    description: "This Carpet is machine made and hand made",
   },
 ];
 

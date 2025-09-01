@@ -104,7 +104,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="mt-10 border-t border-gray-700 pt-4 text-center text-gray-400 text-xs">
+      <div className="mt-6 border-t border-gray-700 pt-4 text-center text-gray-400 text-xs">
         &reg; {new Date().getFullYear()} Akmal Nawabi. All rights reserved.
       </div>
     </footer>

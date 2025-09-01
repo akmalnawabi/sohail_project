@@ -68,7 +68,7 @@ const Navbar = () => {
             <div className="py-2">
               <Link
                 to="/"
-                className="flex items-center gap-2 font-semibold text-xl sm:text-xl text-shadow-black"
+                className="flex items-center gap-2 font-semibold text-xl sm:text-xl text-shadow-black italic"
               >
                 {Logo && <img src={Logo} alt="logo" className="w-10" />}
                 AFGHAN CULTURE PRODUCTS
