@@ -5,7 +5,6 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import LoginModal from "../auth/LoginModal";
-import { IoLogOut } from "react-icons/io5";
 import Logo from "../../assets/logo.png";
 
 const Menu = [
@@ -120,7 +119,6 @@ const Navbar = () => {
                       onClick={handleLogout}
                       className="bg-amber-500 text-white px-3 py-1 rounded-md hover:bg-amber-600 transition-colors text-sm flex items-center gap-1"
                     >
-                      <IoLogOut size={14} />
                       Logout
                     </button>
                   </>
