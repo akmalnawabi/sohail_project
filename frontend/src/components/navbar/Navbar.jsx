@@ -60,7 +60,7 @@ const Navbar = () => {
     <>
       <div
         className="shadow-md bg-white dark-text-white
-    duration-200 relative z-40"
+        duration-200 relative z-40"
       >
         {/* upper navbar  */}
         <div className="bg-orange-400/40 py-1">
