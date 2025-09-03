@@ -10,6 +10,7 @@ const Product = require("./models/Product");
 // Import routes
 const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/products");
+const uploadRoutes = require("./routes/upload");
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve uploaded files statically
+app.use("/uploads", express.static("uploads"));
 
 // Basic route for testing
 app.get("/", (req, res) => {
@@ -54,6 +58,9 @@ app.use("/api/auth", authRoutes);
 
 // Use product routes
 app.use("/api/products", productRoutes);
+
+// Use upload routes
+app.use("/api/upload", uploadRoutes);
 
 // Define port
 const PORT = process.env.PORT || 5000;

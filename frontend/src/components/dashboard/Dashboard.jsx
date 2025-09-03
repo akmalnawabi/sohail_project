@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { IoAdd, IoTrash, IoPencil, IoLogOut } from "react-icons/io5";
+import {
+  IoAdd,
+  IoTrash,
+  IoPencil,
+  IoCloudUpload,
+  IoClose,
+} from "react-icons/io5";
 
 const Dashboard = () => {
   const { user, logout, token } = useAuth();
@@ -8,12 +14,15 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     image: "",
     price: "",
     color: "",
+    category: "General",
+    inStock: true,
   });
 
   // Fetch products on component mount
@@ -40,8 +49,50 @@ const Dashboard = () => {
     }
   };
 
+  const handleImageUpload = async (files) => {
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", files[0]);
+
+      const response = await fetch("http://localhost:5000/api/upload/single", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const imageUrl = result.url;
+
+        setFormData((prev) => ({
+          ...prev,
+          image: imageUrl,
+        }));
+
+        alert("Image uploaded successfully!");
+      } else {
+        const error = await response.json();
+        alert(`Upload failed: ${error.error}`);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Failed to upload image. Please try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // For new products, validate that we have an image
+    if (!editingProduct && !formData.image) {
+      alert("Please upload an image for the product.");
+      return;
+    }
 
     try {
       const url = editingProduct
@@ -108,11 +159,13 @@ const Dashboard = () => {
   const handleEdit = (product) => {
     setEditingProduct(product);
     setFormData({
-      name: product.name,
-      description: product.description,
-      image: product.image,
-      price: product.price,
-      color: product.color,
+      name: product.name || "",
+      description: product.description || "",
+      image: product.image || "",
+      price: product.price || "",
+      color: product.color || "",
+      category: product.category || "General",
+      inStock: product.inStock !== undefined ? product.inStock : true,
     });
     setShowAddForm(true);
   };
@@ -124,6 +177,8 @@ const Dashboard = () => {
       image: "",
       price: "",
       color: "",
+      category: "General",
+      inStock: true,
     });
   };
 
@@ -231,19 +286,80 @@ const Dashboard = () => {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Image URL
+                  Category
                 </label>
-                <input
-                  type="url"
-                  value={formData.image}
+                <select
+                  value={formData.category}
                   onChange={(e) =>
-                    setFormData({ ...formData, image: e.target.value })
+                    setFormData({ ...formData, category: e.target.value })
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  required
+                >
+                  <option value="General">General</option>
+                  <option value="Home">Home & Garden</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="inStock"
+                  checked={formData.inStock}
+                  onChange={(e) =>
+                    setFormData({ ...formData, inStock: e.target.checked })
+                  }
+                  className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded"
                 />
+                <label
+                  htmlFor="inStock"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  In Stock
+                </label>
+              </div>
+
+              {/* Image Upload Section */}
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Product Image
+                </label>
+
+                {/* Upload Button */}
+                <div className="mb-4">
+                  <input
+                    type="file"
+                    id="imageUpload"
+                    accept="image/*"
+                    onChange={(e) => handleImageUpload(e.target.files)}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="imageUpload"
+                    className={`flex items-center justify-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-amber-500 transition-colors ${
+                      uploading ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                  >
+                    <IoCloudUpload className="text-xl text-gray-400" />
+                    <span className="text-gray-600">
+                      {uploading ? "Uploading..." : "Click to upload image"}
+                    </span>
+                  </label>
+                </div>
+
+                {/* Display Uploaded Image */}
+                {formData.image && (
+                  <div className="relative">
+                    <img
+                      src={formData.image}
+                      alt="Product"
+                      className="w-32 h-32 object-cover rounded-lg border-2 border-gray-200"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="md:col-span-2">
@@ -264,7 +380,8 @@ const Dashboard = () => {
               <div className="md:col-span-2 flex gap-3">
                 <button
                   type="submit"
-                  className="bg-amber-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors"
+                  disabled={uploading || (!editingProduct && !formData.image)}
+                  className="bg-amber-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {editingProduct ? "Update Product" : "Add Product"}
                 </button>
@@ -313,6 +430,12 @@ const Dashboard = () => {
                       Color
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Category
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Stock
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -322,12 +445,15 @@ const Dashboard = () => {
                     <tr key={product._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <img
-                          src={product.image}
+                          src={
+                            product.image ||
+                            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='8' fill='%236b7280'%3ENo Image%3C/text%3E%3C/svg%3E"
+                          }
                           alt={product.name}
                           className="h-16 w-16 object-cover rounded-md"
                           onError={(e) => {
                             e.target.src =
-                              "https://via.placeholder.com/64x64?text=No+Image";
+                              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='8' fill='%236b7280'%3ENo Image%3C/text%3E%3C/svg%3E";
                           }}
                         />
                       </td>
@@ -342,6 +468,20 @@ const Dashboard = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {product.color}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {product.category || "General"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            product.inStock
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
+                          {product.inStock ? "In Stock" : "Out of Stock"}
+                        </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex gap-2">

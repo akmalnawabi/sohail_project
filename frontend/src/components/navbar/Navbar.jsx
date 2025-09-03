@@ -64,14 +64,16 @@ const Navbar = () => {
       >
         {/* upper navbar  */}
         <div className="bg-orange-400/40 py-1">
-          <div className="container flex justify-between items-center px-4">
+          <div className="container flex justify-between items-center px-2 sm:px-4">
             <div className="py-2">
               <Link
                 to="/"
                 className="flex items-center gap-2 font-semibold text-xl sm:text-xl text-shadow-black italic"
               >
                 {Logo && <img src={Logo} alt="logo" className="w-10" />}
-                AFGHAN CULTURE PRODUCTS
+                <span className="hidden sm:inline">
+                  AFGHAN CULTURE PRODUCTS
+                </span>
               </Link>
             </div>
 
@@ -151,7 +153,7 @@ const Navbar = () => {
           </ul>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden w-full px-4">
+          <div className="md:hidden w-full px-2 sm:px-4">
             <button
               onClick={toggleMenu}
               className="flex items-center justify-between w-full py-2 text-gray-700 hover:text-orange-500 transition-colors duration-200"

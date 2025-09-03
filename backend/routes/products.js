@@ -9,7 +9,27 @@ router.get("/", async (req, res) => {
     const products = await Product.find().sort({
       createdAt: -1,
     });
-    res.json(products);
+
+    // Convert relative URLs to absolute URLs
+    const productsWithAbsoluteUrls = products.map((product) => {
+      if (product.image && !product.image.startsWith("http")) {
+        const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+        // Ensure the image path includes /uploads/ if it's just a filename
+        if (
+          !product.image.startsWith("/uploads/") &&
+          !product.image.includes("/")
+        ) {
+          product.image = `${baseUrl}/uploads/${product.image}`;
+        } else {
+          product.image = `${baseUrl}${
+            product.image.startsWith("/") ? "" : "/"
+          }${product.image}`;
+        }
+      }
+      return product;
+    });
+
+    res.json(productsWithAbsoluteUrls);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch products" });
   }
@@ -22,6 +42,23 @@ router.get("/:id", async (req, res) => {
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
+
+    // Convert relative URL to absolute URL
+    if (product.image && !product.image.startsWith("http")) {
+      const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+      // Ensure the image path includes /uploads/ if it's just a filename
+      if (
+        !product.image.startsWith("/uploads/") &&
+        !product.image.includes("/")
+      ) {
+        product.image = `${baseUrl}/uploads/${product.image}`;
+      } else {
+        product.image = `${baseUrl}${product.image.startsWith("/") ? "" : "/"}${
+          product.image
+        }`;
+      }
+    }
+
     res.json(product);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch product" });
@@ -31,12 +68,13 @@ router.get("/:id", async (req, res) => {
 // Add new product (admin only)
 router.post("/", authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { name, description, image, price, color } = req.body;
+    const { name, description, image, price, color, category, inStock } =
+      req.body;
 
     // Validate required fields
-    if (!name || !description || !image || !price || !color) {
+    if (!name || !description || !price || !image) {
       return res.status(400).json({
-        error: "Name, description, image, price, and color are required",
+        error: "Name, description, price, and image are required",
       });
     }
 
@@ -46,6 +84,8 @@ router.post("/", authenticateToken, requireAdmin, async (req, res) => {
       image,
       price: Number(price),
       color,
+      category: category || "General",
+      inStock: inStock !== undefined ? inStock : true,
     });
 
     await product.save();
@@ -62,7 +102,8 @@ router.post("/", authenticateToken, requireAdmin, async (req, res) => {
 // Update product (admin only)
 router.put("/:id", authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { name, description, image, price, color } = req.body;
+    const { name, description, image, price, color, category, inStock } =
+      req.body;
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -72,9 +113,13 @@ router.put("/:id", authenticateToken, requireAdmin, async (req, res) => {
     // Update fields
     if (name) product.name = name;
     if (description) product.description = description;
-    if (image) product.image = image;
-    if (price) product.price = Number(price);
-    if (color) product.color = color;
+    if (image) {
+      product.image = image;
+    }
+    if (price !== undefined) product.price = Number(price);
+    if (color !== undefined) product.color = color;
+    if (category !== undefined) product.category = category;
+    if (inStock !== undefined) product.inStock = inStock;
 
     await product.save();
     res.json({

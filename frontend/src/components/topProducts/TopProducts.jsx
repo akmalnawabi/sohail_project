@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import img1 from "../../assets/services1.jpg";
 import img2 from "../../assets/aboutPic.png";
 import img3 from "../../assets/service3.png";
 import { FaStar } from "react-icons/fa";
+import { IoBagAdd } from "react-icons/io5";
 
 const ProductsData = [
   {
@@ -14,8 +15,8 @@ const ProductsData = [
   {
     id: 2,
     img: img2,
-    title: "Afghani Almond",
-    description: "This Almond is Afghani Top Almond",
+    title: "Afghani Walnut",
+    description: "This Almond is Afghani Top Walnut",
   },
   {
     id: 3,
@@ -26,6 +27,17 @@ const ProductsData = [
 ];
 
 const TopProducts = () => {
+  const [showOrderAlert, setShowOrderAlert] = useState(false);
+
+  // Order alert functions
+  const showOrderAlertModal = () => {
+    setShowOrderAlert(true);
+  };
+
+  const closeOrderAlert = () => {
+    setShowOrderAlert(false);
+  };
+
   return (
     <div>
       <div className="container mt-14">
@@ -38,7 +50,7 @@ const TopProducts = () => {
           </p>
         </div>
         {/* body  */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-0">
           {ProductsData.map((data) => (
             <div
               key={data.id}
@@ -73,6 +85,7 @@ const TopProducts = () => {
                 </div>
                 <div className="mt-4 text-center">
                   <button
+                    onClick={showOrderAlertModal}
                     className="bg-gradient-to-r from-amber-400 to bg-amber-500
                   text-white rounded-full px-4 py-2 hover:text-black hover:bg-amber-400 transition-colors duration-200"
                   >
@@ -84,6 +97,62 @@ const TopProducts = () => {
           ))}
         </div>
       </div>
+
+      {/* Order Alert Modal */}
+      {showOrderAlert && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full p-6">
+            {/* Alert Icon */}
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+                <IoBagAdd className="text-amber-600 text-2xl" />
+              </div>
+            </div>
+
+            {/* Alert Content */}
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Online Ordering Not Available
+              </h3>
+              <p className="text-gray-600 mb-6">
+                We're working on bringing you online delivery and payment
+                options. For now, please contact us directly to place your
+                order.
+              </p>
+
+              {/* Contact Info */}
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Contact us for orders:</strong>
+                </p>
+                <p className="text-sm text-gray-600">
+                  📞 Phone: +1 (555) 123-4567
+                  <br />
+                  📧 Email: orders@sohailstore.com
+                  <br />
+                  💬 WhatsApp: +1 (555) 123-4567
+                </p>
+              </div>
+            </div>
+
+            {/* Alert Actions */}
+            <div className="flex gap-3">
+              <button
+                onClick={closeOrderAlert}
+                className="flex-1 bg-amber-500 text-white py-2 px-4 rounded-md hover:bg-amber-600 transition-colors"
+              >
+                Got it
+              </button>
+              <button
+                onClick={closeOrderAlert}
+                className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

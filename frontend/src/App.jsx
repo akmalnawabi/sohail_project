@@ -1,5 +1,10 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -18,6 +23,14 @@ const LoadingSpinner = () => (
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-500"></div>
   </div>
 );
+
+// Component to conditionally render footer
+const ConditionalFooter = () => {
+  const location = useLocation();
+  const isDashboard = location.pathname === "/dashboard";
+
+  return !isDashboard ? <Footer /> : null;
+};
 
 const App = () => {
   return (
@@ -50,7 +63,7 @@ const App = () => {
             />
           </Routes>
         </Suspense>
-        <Footer />
+        <ConditionalFooter />
       </Router>
     </AuthProvider>
   );

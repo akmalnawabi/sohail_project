@@ -14,12 +14,12 @@ const Banner = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-1 items-center">
           {/* image section  */}
           <div className="flex justify-center lg:justify-start animate-fade-in">
-            <div className="w-full max-w-[250px] sm:max-w-[250px] md:max-w-[250px] mx-auto">
+            <div className="w-[320px] sm:w-[340px] md:w-[330px] lg:w-[320px] xl:w-[310px] h-[320px] sm:h-[340px] md:h-[330px] lg:h-[320px] xl:h-[310px] mx-auto">
               <img
                 src={logo}
-                alt="Edris Qasemyar"
+                alt="logo"
                 loading="lazy"
-                className="h-[150px] sm:h-[250px] md:h-[300px] w-full object-cover rounded-lg shadow-2xl"
+                className="w-full h-full object-cover rounded-lg shadow-2xl"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "block";

@@ -80,6 +80,57 @@
   box-sizing: border-box;
 }
 
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure all elements respect container bounds - but not slider elements */
+*:not(.slick-slider):not(.slick-list):not(.slick-track):not(.slick-slide):not(.hero-slider) {
+  max-width: 100%;
+}
+
+/* Fix for elements that might cause horizontal scroll */
+.w-full {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Slider specific fixes */
+.slick-slider {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.slick-list {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.slick-track {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.slick-slide {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.slick-slide > div {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -88,6 +139,47 @@ img {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Container responsive fixes */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive grid fixes */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Mobile-first responsive breakpoints */
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
 }
 
 /* Reduce motion for users who prefer it */
