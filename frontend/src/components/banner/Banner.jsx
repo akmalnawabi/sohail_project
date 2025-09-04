@@ -14,7 +14,7 @@ const Banner = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-1 items-center">
           {/* image section  */}
           <div className="flex justify-center lg:justify-start animate-fade-in">
-            <div className="w-[320px] sm:w-[340px] md:w-[330px] lg:w-[320px] xl:w-[310px] h-[320px] sm:h-[340px] md:h-[330px] lg:h-[320px] xl:h-[310px] mx-auto">
+            <div className="w-[320px] sm:w-[340px] md:w-[330px] lg:w-[360px] xl:w-[380px] h-[320px] sm:h-[340px] md:h-[330px] lg:h-[360px] xl:h-[380px] mx-auto">
               <img
                 src={logo}
                 alt="logo"
@@ -33,12 +33,18 @@ const Banner = () => {
               About Us
             </h1>
             <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
-              Edris Qasemyar
+              Sohail Noori & Edris Qasemyar
             </h1>
             <p className="text-sm sm:text-md text-gray-500 tracking-wide leading-relaxed">
               Leader of Afghan Culture Products With 10+ Years of Experience
             </p>
-            <div className="flex flex-col gap-3 md:gap-2">
+            <div className="flex flex-col gap-1 md:gap-1">
+              <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
+                <MdOutlineEmail className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-amber-100 flex-shrink-0" />
+                <p className="text-sm sm:text-base break-all">
+                  ahmadsohail.noori2002@gmail.com
+                </p>
+              </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <MdOutlineEmail className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-amber-100 flex-shrink-0" />
                 <p className="text-sm sm:text-base break-all">
@@ -51,7 +57,7 @@ const Banner = () => {
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <IoCallOutline className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-green-100 flex-shrink-0" />
-                <p className="text-sm sm:text-base">+49 1575 6614768</p>
+                <p className="text-sm sm:text-base">+93 773830719</p>
               </div>
             </div>
           </div>

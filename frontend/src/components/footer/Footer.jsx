@@ -83,21 +83,43 @@ const Footer = () => {
             </Link>
           </div>
           <div>
-            <p className="flex gap-2 items-center mt-3"><span><FaPhone/></span>+49 1575 6614768</p>
-            <p className="flex gap-2 items-center"><span><FaPhone/></span>+1 6313 669203</p>
+            <p className="flex gap-2 items-center mt-4">
+              <span>
+                <FaPhone />
+              </span>
+              +93 773830719
+            </p>
+            <p className="flex gap-2 items-center">
+              <span>
+                <FaPhone />
+              </span>
+              +49 1575 6614768
+            </p>
+            <p className="flex gap-2 items-center">
+              <span>
+                <FaPhone />
+              </span>
+              +1 6313 669203
+            </p>
           </div>
         </div>
         {/* Address */}
         <div>
           <h1 className="text-lg font-semibold mb-4">Address</h1>
           <p className="text-gray-300 text-sm flex items-center gap-2">
-            <span className="text-orange-400">
+            <span className="text-orange-500">
+              <CiLocationOn className="text-xl" />
+            </span>
+            New City, Kabul, AFG
+          </p>
+          <p className="text-gray-300 text-sm flex items-center gap-2">
+            <span className="text-orange-500">
               <CiLocationOn className="text-xl" />
             </span>
             Von-Schwind-Straße 25 45768 Marl Deutschland, GER
           </p>
           <p className="text-gray-300 text-sm flex items-center gap-2">
-            <span className="text-orange-400">
+            <span className="text-orange-500">
               <CiLocationOn className="text-xl" />
             </span>
             Hauppauge NY 11788, USA
