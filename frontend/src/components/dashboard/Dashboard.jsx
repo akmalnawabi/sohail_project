@@ -286,24 +286,6 @@ const Dashboard = () => {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Category
-                </label>
-                <select
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  <option value="General">General</option>
-                  <option value="Home">Home & Garden</option>
-                  <option value="Sports">Sports</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
