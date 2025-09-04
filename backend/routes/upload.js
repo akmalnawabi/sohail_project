@@ -6,7 +6,17 @@ const path = require("path");
 
 // Helper function to generate absolute URL
 const generateImageUrl = (filename) => {
-  const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+  // Use environment variable or detect from request
+  let baseUrl = process.env.BASE_URL;
+
+  if (!baseUrl) {
+    // Fallback: detect from request or use default
+    baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://afghanproducts.onrender.com"
+        : "http://localhost:5000";
+  }
+
   return `${baseUrl}/uploads/${filename}`;
 };
 
@@ -47,7 +57,12 @@ router.get("/:filename", (req, res) => {
 
   res.sendFile(filepath, (err) => {
     if (err) {
-      res.status(404).json({ error: "Image not found" });
+      console.error(`Image not found: ${filename}`, err.message);
+      res.status(404).json({
+        error: "Image not found",
+        filename: filename,
+        message: "The requested image could not be found on the server",
+      });
     }
   });
 });
