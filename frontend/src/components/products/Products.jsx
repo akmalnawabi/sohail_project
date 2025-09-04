@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "../../config/api";
 import { IoIosPricetag } from "react-icons/io";
 import {
   IoEyeOutline,
@@ -26,7 +27,7 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/api/products");
+      const response = await fetch(API_ENDPOINTS.PRODUCTS);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

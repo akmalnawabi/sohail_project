@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { API_ENDPOINTS } from "../../config/api";
 import {
   IoAdd,
   IoTrash,
@@ -32,7 +33,7 @@ const Dashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/products", {
+      const response = await fetch(API_ENDPOINTS.PRODUCTS, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +56,7 @@ const Dashboard = () => {
       const formData = new FormData();
       formData.append("image", files[0]);
 
-      const response = await fetch("http://localhost:5000/api/upload/single", {
+      const response = await fetch(API_ENDPOINTS.UPLOAD, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -96,8 +97,8 @@ const Dashboard = () => {
 
     try {
       const url = editingProduct
-        ? `http://localhost:5000/api/products/${editingProduct._id}`
-        : "http://localhost:5000/api/products";
+        ? `${API_ENDPOINTS.PRODUCTS}/${editingProduct._id}`
+        : API_ENDPOINTS.PRODUCTS;
 
       const method = editingProduct ? "PUT" : "POST";
 
@@ -135,15 +136,12 @@ const Dashboard = () => {
       return;
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/products/${productId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${API_ENDPOINTS.PRODUCTS}/${productId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         alert("Product deleted successfully!");
