@@ -48,7 +48,7 @@ const Banner = () => {
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
                 <MdOutlineEmail className="text-2xl sm:text-3xl md:text-4xl h-10 w-10 sm:h-12 sm:w-12 shadow-sm p-2 sm:p-4 rounded-full bg-amber-100 flex-shrink-0" />
                 <p className="text-sm sm:text-base break-all">
-                  edris411@outlook.com
+                  afghancultureproduct@gmail.com
                 </p>
               </div>
               <div className="flex items-center gap-3 md:gap-3 justify-center lg:justify-start">
